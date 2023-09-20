@@ -1,5 +1,7 @@
 import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import {themeSettings} from "./theme/theme.ts";
+import {RouterProvider} from "react-router-dom";
+import {configRouter} from "@/app/providers/RouterProvider";
 
 const theme = createTheme(themeSettings);
 
@@ -8,9 +10,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      hi
+      <RouterProvider router={configRouter} />
     </ThemeProvider>
-  )
+  );
 }
 
-export default App
+export default App;
