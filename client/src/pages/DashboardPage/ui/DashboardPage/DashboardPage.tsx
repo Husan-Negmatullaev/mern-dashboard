@@ -1,12 +1,15 @@
 import { Box, useMediaQuery } from "@mui/material";
+import { DashboardBox } from "@/shared/ui/DashboardBox/DashboardBox.tsx";
+import { useGetAllKpisQuery } from "@/entities/Kpis";
 import {
 	gridLaptopTemplateNames,
 	gridTabletTemplateNames,
-} from "./gridTemplateNames.ts";
-import { DashboardBox } from "@/shared/ui/DashboardBox/DashboardBox.tsx";
+} from "../../lib/gridDashboardTemplate/gridTemplateNames.ts";
+import { KpiAreaChart } from "@/entities/Kpis/ui/KpiAreaChart/KpiAreaChart.tsx";
 
 export const DashboardPage = () => {
 	const isAboveLaptopSize = useMediaQuery("(min-width: 1220px)");
+	const { data } = useGetAllKpisQuery();
 
 	return (
 		<Box
@@ -20,7 +23,9 @@ export const DashboardPage = () => {
 			gridAutoRows={isAboveLaptopSize ? "60px" : "80px"}
 			gridTemplateColumns="repeat(auto-fit, minmax(370px, 1fr))"
 		>
-			<DashboardBox gridArea="a">A</DashboardBox>
+			<DashboardBox gridArea="a">
+				<KpiAreaChart kpiItemData={data} />
+			</DashboardBox>
 			<DashboardBox gridArea="b">B</DashboardBox>
 			<DashboardBox gridArea="c">C</DashboardBox>
 			<DashboardBox gridArea="d">D</DashboardBox>

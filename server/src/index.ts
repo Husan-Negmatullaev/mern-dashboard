@@ -7,6 +7,8 @@ import helmet from "helmet";
 import morgan from "morgan";
 
 import kpiRoutes from "./routes/kpi";
+import KPI from "./models/KPI";
+import { kpis } from "./mock-data/data";
 
 // CONFIGURATION
 dotenv.config();
@@ -34,7 +36,7 @@ if (process.env.MONGO_URL_DB) {
       );
 
       /* ADD DATA ONE TIME ONLY OR AS NEEDED */
-      await mongoose.connection.db.dropDatabase();
+      // await mongoose.connection.db.dropDatabase();
       // KPI.insertMany(kpis);
       // Product.insertMany(products);
       // Transaction.insertMany(transactions);
