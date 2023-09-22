@@ -1,6 +1,6 @@
 import { FlexBetweenBox } from "@/shared/ui/FlexBetweenBox/FlexBetweenBox.tsx";
 import PixIcon from "@mui/icons-material/Pix";
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import { routerPaths } from "@/shared/config/router-config/router-config.ts";
 import { activeLinkStyles } from "@/widgets/Layout/lib/activeLinkStyles.ts";
@@ -9,6 +9,7 @@ import { SxProps } from "@mui/system/styleFunctionSx";
 
 export const NavBar = () => {
 	const color = useTheme();
+	const isAboveLaptopSize = useMediaQuery("(min-width: 340px)");
 
 	const boxStyled = useMemo<SxProps<typeof color>>(
 		() => ({ "&:hover": { color: color.palette.primary[100] } }),
@@ -23,7 +24,7 @@ export const NavBar = () => {
 		>
 			<FlexBetweenBox gap="0.75rem">
 				<PixIcon fontSize={"large"} />
-				<Typography title={"h4"} fontSize="16px">
+				<Typography title={"h4"} fontSize="16px" hidden={!isAboveLaptopSize}>
 					Finanseer
 				</Typography>
 			</FlexBetweenBox>

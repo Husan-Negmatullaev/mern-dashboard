@@ -1,11 +1,15 @@
 import { Box, useMediaQuery } from "@mui/material";
 import { DashboardBox } from "@/shared/ui/DashboardBox/DashboardBox.tsx";
-import { useGetAllKpisQuery } from "@/entities/Kpis";
+import {
+	KpiAreaChart,
+	KpiBarChart,
+	KpiLineChart,
+	useGetAllKpisQuery,
+} from "@/entities/Kpis";
 import {
 	gridLaptopTemplateNames,
 	gridTabletTemplateNames,
 } from "../../lib/gridDashboardTemplate/gridTemplateNames.ts";
-import { KpiAreaChart } from "@/entities/Kpis/ui/KpiAreaChart/KpiAreaChart.tsx";
 
 export const DashboardPage = () => {
 	const isAboveLaptopSize = useMediaQuery("(min-width: 1220px)");
@@ -21,13 +25,17 @@ export const DashboardPage = () => {
 				isAboveLaptopSize ? gridLaptopTemplateNames : gridTabletTemplateNames
 			}
 			gridAutoRows={isAboveLaptopSize ? "60px" : "80px"}
-			gridTemplateColumns="repeat(auto-fit, minmax(370px, 1fr))"
+			gridTemplateColumns="repeat(auto-fit, minmax(280px, 1fr))"
 		>
 			<DashboardBox gridArea="a">
 				<KpiAreaChart kpiItemData={data} />
 			</DashboardBox>
-			<DashboardBox gridArea="b">B</DashboardBox>
-			<DashboardBox gridArea="c">C</DashboardBox>
+			<DashboardBox gridArea="b">
+				<KpiLineChart kpiItemData={data} />
+			</DashboardBox>
+			<DashboardBox gridArea="c">
+				<KpiBarChart kpiItemData={data} />
+			</DashboardBox>
 			<DashboardBox gridArea="d">D</DashboardBox>
 			<DashboardBox gridArea="e">E</DashboardBox>
 			<DashboardBox gridArea="f">F</DashboardBox>
