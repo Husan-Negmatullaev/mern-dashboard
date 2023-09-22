@@ -5,10 +5,13 @@ import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
+import { products, transactions } from "./mock-data/data";
 
 import kpiRoutes from "./routes/kpi";
-import KPI from "./models/KPI";
-import { kpis } from "./mock-data/data";
+import productRoutes from "./routes/product";
+import transactionRoutes from "./routes/transaction";
+import { Product } from "./models/Product";
+import { Transaction } from "./models/Transactions";
 
 // CONFIGURATION
 dotenv.config();
@@ -22,8 +25,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 // Routes
-
 app.use("/kpi", kpiRoutes);
+app.use("/product", productRoutes);
+app.use("/transaction", transactionRoutes);
 
 const APP_PORT = process.env.PORT || 9000;
 

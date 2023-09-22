@@ -9,7 +9,7 @@ export const kpisApi = createApi({
 	tagTypes: ["Kpis"],
 	endpoints: (build) => ({
 		getAllKpis: build.query<Array<KPIItem>, void>({
-			query: () => "kpi/kpis/",
+			query: () => "/kpi/kpis/",
 			providesTags: ["Kpis"],
 		}),
 	}),

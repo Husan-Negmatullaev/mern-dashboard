@@ -31,7 +31,7 @@ export const KpiBarChart: FC<KpiBarChartProps> = (props) => {
 			}),
 		[kpiItemData],
 	);
-	console.log(palette);
+
 	return (
 		<>
 			<HeaderChartBox

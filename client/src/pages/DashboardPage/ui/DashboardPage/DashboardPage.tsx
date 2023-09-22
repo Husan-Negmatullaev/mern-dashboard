@@ -10,10 +10,23 @@ import {
 	gridLaptopTemplateNames,
 	gridTabletTemplateNames,
 } from "../../lib/gridDashboardTemplate/gridTemplateNames.ts";
+import {
+	ProductLineChart,
+	ProductPieChart,
+	ProductScatterChart,
+	ProductTableGrid,
+	useGetAllProductsQuery,
+} from "@/entities/Product";
+import {
+	TransactionTableGrid,
+	useGetAllTransactionsQuery,
+} from "@/entities/Transaction";
 
 export const DashboardPage = () => {
 	const isAboveLaptopSize = useMediaQuery("(min-width: 1220px)");
-	const { data } = useGetAllKpisQuery();
+	const { data: kpiData } = useGetAllKpisQuery();
+	const { data: productData } = useGetAllProductsQuery();
+	const { data: transactionData } = useGetAllTransactionsQuery();
 
 	return (
 		<Box
@@ -28,20 +41,30 @@ export const DashboardPage = () => {
 			gridTemplateColumns="repeat(auto-fit, minmax(280px, 1fr))"
 		>
 			<DashboardBox gridArea="a">
-				<KpiAreaChart kpiItemData={data} />
+				<KpiAreaChart kpiItemData={kpiData} />
 			</DashboardBox>
 			<DashboardBox gridArea="b">
-				<KpiLineChart kpiItemData={data} />
+				<KpiLineChart kpiItemData={kpiData} />
 			</DashboardBox>
 			<DashboardBox gridArea="c">
-				<KpiBarChart kpiItemData={data} />
+				<KpiBarChart kpiItemData={kpiData} />
 			</DashboardBox>
-			<DashboardBox gridArea="d">D</DashboardBox>
-			<DashboardBox gridArea="e">E</DashboardBox>
-			<DashboardBox gridArea="f">F</DashboardBox>
-			<DashboardBox gridArea="g">G</DashboardBox>
+			<DashboardBox gridArea="d">
+				<ProductScatterChart productItemData={productData} />
+			</DashboardBox>
+			<DashboardBox gridArea="e">
+				<ProductLineChart kpiItemData={kpiData} />
+			</DashboardBox>
+			<DashboardBox gridArea="f">
+				<ProductPieChart kpiItemData={kpiData} />
+			</DashboardBox>
+			<DashboardBox gridArea="g">
+				<TransactionTableGrid transactionItemData={transactionData} />
+			</DashboardBox>
 			<DashboardBox gridArea="h">H</DashboardBox>
-			<DashboardBox gridArea="k">K</DashboardBox>
+			<DashboardBox gridArea="k">
+				<ProductTableGrid productItemData={productData} />
+			</DashboardBox>
 			<DashboardBox gridArea="i">I</DashboardBox>
 		</Box>
 	);
