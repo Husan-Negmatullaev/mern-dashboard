@@ -4,6 +4,7 @@ import {
 	KpiAreaChart,
 	KpiBarChart,
 	KpiLineChart,
+	KpiPieChart,
 	useGetAllKpisQuery,
 } from "@/entities/Kpis";
 import {
@@ -18,6 +19,7 @@ import {
 	useGetAllProductsQuery,
 } from "@/entities/Product";
 import {
+	TransactionProgressBar,
 	TransactionTableGrid,
 	useGetAllTransactionsQuery,
 } from "@/entities/Transaction";
@@ -37,7 +39,7 @@ export const DashboardPage = () => {
 			gridTemplateAreas={
 				isAboveLaptopSize ? gridLaptopTemplateNames : gridTabletTemplateNames
 			}
-			gridAutoRows={isAboveLaptopSize ? "60px" : "80px"}
+			gridAutoRows={isAboveLaptopSize ? "80px" : "60px"}
 			gridTemplateColumns="repeat(auto-fit, minmax(280px, 1fr))"
 		>
 			<DashboardBox gridArea="a">
@@ -61,11 +63,15 @@ export const DashboardPage = () => {
 			<DashboardBox gridArea="g">
 				<TransactionTableGrid transactionItemData={transactionData} />
 			</DashboardBox>
-			<DashboardBox gridArea="h">H</DashboardBox>
+			<DashboardBox gridArea="h">
+				<KpiPieChart kpiItemData={kpiData} />
+			</DashboardBox>
 			<DashboardBox gridArea="k">
 				<ProductTableGrid productItemData={productData} />
 			</DashboardBox>
-			<DashboardBox gridArea="i">I</DashboardBox>
+			<DashboardBox gridArea="i">
+				<TransactionProgressBar />
+			</DashboardBox>
 		</Box>
 	);
 };
